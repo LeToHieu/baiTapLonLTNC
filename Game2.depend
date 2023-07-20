@@ -1,0 +1,140 @@
+# depslib dependency file v1.0
+1689777441 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"Game.h"
+
+1689598083 g:\project\c++_project\physics_2d_platfomer_sdl\game2\game.h
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+
+1689788082 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\game.cpp
+	"Game.h"
+	"TextureManager.h"
+	"Bird.h"
+	"Pipe.h"
+	"Pipes.h"
+	"BackGround.h"
+	"Button.h"
+	"MyText.h"
+	"MenuScreen.h"
+	<fstream>
+	<iostream>
+	<string>
+	<vector>
+
+1688946574 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\gameobject.cpp
+	"GameObject.h"
+	"TextureManager.h"
+
+1688907819 g:\project\c++_project\physics_2d_platfomer_sdl\game2\gameobject.h
+	<SDL.h>
+
+1689527582 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\texturemanager.cpp
+	"TextureManager.h"
+
+1689527700 g:\project\c++_project\physics_2d_platfomer_sdl\game2\texturemanager.h
+	<SDL.h>
+	<SDL_image.h>
+
+1688926991 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\ltexture.cpp
+	"LTexture.h"
+
+1688926874 g:\project\c++_project\physics_2d_platfomer_sdl\game2\ltexture.h
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+
+1689602347 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.cpp
+	"Pipe.h"
+	"TextureManager.h"
+	<iostream>
+
+1689602059 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.h
+	<SDL.h>
+
+1689612771 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.cpp
+	"Bird.h"
+	"TextureManager.h"
+	<iostream>
+	<vector>
+
+1689612789 g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.h
+	<SDL.h>
+	<vector>
+	"Pipes.h"
+
+1689602451 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.cpp
+	"Pipes.h"
+	"Pipe.h"
+	<time.h>
+	<iostream>
+
+1689602377 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.h
+	"Pipe.h"
+	"Coin.h"
+	<vector>
+
+1689051780 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\mypipe.cpp
+	"myPipe.h"
+
+1689052307 g:\project\c++_project\physics_2d_platfomer_sdl\game2\mypipe.h
+	<SDL.h>
+	"TextureManager.h"
+
+1689581428 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\background.cpp
+	"BackGround.h"
+	"iostream"
+
+1689185545 g:\project\c++_project\physics_2d_platfomer_sdl\game2\background.h
+	"TextureManager.h"
+
+1689742165 g:\project\c++_project\physics_2d_platfomer_sdl\game2\button.h
+	"TextureManager.h"
+
+1689606533 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\button.cpp
+	"Button.h"
+	<iostream>
+
+1689445877 g:\project\c++_project\physics_2d_platfomer_sdl\game2\ltimer.h
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+
+1689445726 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\ltimer.cpp
+	"LTimer.h"
+
+1689602163 g:\project\c++_project\physics_2d_platfomer_sdl\game2\coin.h
+	"TextureManager.h"
+
+1689611019 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\coin.cpp
+	"Coin.h"
+
+1689561376 g:\project\c++_project\physics_2d_platfomer_sdl\game2\mytext.h
+	<SDL.h>
+	<SDL_ttf.h>
+	"string"
+	<iostream>
+
+1689592843 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\mytext.cpp
+	"MyText.h"
+
+1689745677 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\menuscreen.cpp
+	"MenuScreen.h"
+
+1689741912 g:\project\c++_project\physics_2d_platfomer_sdl\game2\menuscreen.h
+	"TextureManager.h"
+	"MyText.h"
+	"Button.h"
+
+1689871440 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\deadscreen.cpp
+	"DeadScreen.h"
+
+1689871078 g:\project\c++_project\physics_2d_platfomer_sdl\game2\deadscreen.h
+	"TextureManager.h"
+	"MyText.h"
+	"Button.h"
+
