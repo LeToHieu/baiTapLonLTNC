@@ -34,6 +34,7 @@ bool Button::handleEvent(SDL_Event& ev){
     switch(ev.type){
         case SDL_MOUSEMOTION:
             if (isInside(ev.button.x, ev.button.y)) {
+
                 CurrentState = BUTTON_STATE_MOUSE_OVER_MOTION;
             }else {
                 CurrentState = BUTTON_STATE_MOUSE_OUTSIDE;

@@ -66,8 +66,9 @@ void Pipe::pause(){
 void Pipe::notPause(){
     pipeVelX = PIPE_VEL;
 }
-void Pipe::reset(){
+void Pipe::reset(int y){
     destRect.x = TEMP_X;
-    destRect.y = TEMP_Y;
+    destRect.y = y;
+
     pipeVelX = PIPE_VEL;
 }

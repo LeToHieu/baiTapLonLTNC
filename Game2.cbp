@@ -43,6 +43,8 @@
 		<Unit filename="Coin.h" />
 		<Unit filename="DeadScreen.cpp" />
 		<Unit filename="DeadScreen.h" />
+		<Unit filename="Fruit.cpp" />
+		<Unit filename="Fruit.h" />
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.h" />
 		<Unit filename="MenuScreen.cpp" />

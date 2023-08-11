@@ -2,6 +2,7 @@
 #define PIPES_H
 #include "Pipe.h"
 #include "Coin.h"
+#include "Fruit.h"
 #include<vector>
 class Pipes
 {
@@ -16,6 +17,8 @@ class Pipes
         static const int WIDTH_BET_PIPES = 440;
         std::vector<Pipe*> pipes;
         std::vector<Coin*> coins;
+        Fruit* apple;
+        Fruit* banana;
 
         static const int SCREEN_HEIGHT = 600;
         static const int SCREEN_WIDTH = 1200;

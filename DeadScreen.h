@@ -6,8 +6,12 @@
 class DeadScreen
 {
     public:
+
         static const int SCREEN_HEIGHT = 600;
         static const int SCREEN_WIDTH = 1200;
+
+        static const int PAUSE_SCREEN_HEIGHT = 500;
+        static const int PAUSE_SCREEN_WIDTH = 550;
 
         DeadScreen(SDL_Renderer* ren, int &highScore, int &yourScore);
         virtual ~DeadScreen();
@@ -16,6 +20,7 @@ class DeadScreen
 
         SDL_Rect bgRect;
         SDL_Rect outLineRect;
+        MyText *DeadText = nullptr;
         MyText *BestScoreText = nullptr;
         MyText *YourScoreText = nullptr;
         Button *BackBtn = nullptr;

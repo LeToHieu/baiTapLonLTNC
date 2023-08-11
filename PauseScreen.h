@@ -10,6 +10,9 @@ class PauseScreen
         static const int SCREEN_HEIGHT = 600;
         static const int SCREEN_WIDTH = 1200;
 
+        static const int PAUSE_SCREEN_HEIGHT = 500;
+        static const int PAUSE_SCREEN_WIDTH = 550;
+
         PauseScreen(SDL_Renderer* ren, int &highScore);
         virtual ~PauseScreen();
         void Render();
@@ -18,6 +21,7 @@ class PauseScreen
         SDL_Rect bgRect;
         SDL_Rect outLineRect;
         MyText *BestScoreText = nullptr;
+        MyText *PauseText = nullptr;
         Button *BackBtn = nullptr;
         Button *ContinueBtn = nullptr;
 

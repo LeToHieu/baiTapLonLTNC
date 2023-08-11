@@ -7,10 +7,13 @@
 #include "Button.h"
 #include "MyText.h"
 #include "MenuScreen.h"
+#include "PauseScreen.h"
+#include "DeadScreen.h"
 #include <fstream>
 #include <iostream>
 #include <string>
 #include<vector>
+#include <SDL_mixer.h>
 
 enum Screen {
     MyMenu = 0,
@@ -21,6 +24,9 @@ enum Screen {
 
 Screen Current = MyMenu;
 
+Mix_Chunk* selectMus;
+Mix_Chunk* pauseMus;
+Mix_Music* bgMus;
 
 Bird *player = nullptr;
 Pipes *pipes = nullptr;
@@ -30,6 +36,8 @@ Button *pauseBtn = nullptr;
 MyText *scoreText = nullptr;
 MyText *highScoreText = nullptr;
 MenuScreen *menuScreen = nullptr;
+PauseScreen *pauseScreen = nullptr;
+DeadScreen *deadScreen = nullptr;
 
 int score = 0;
 int tempScore = 10;
@@ -47,6 +55,7 @@ Game::Game()
 Game::~Game()
 {
     //dtor
+    clean();
 }
 
 void pause(){
@@ -77,6 +86,9 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
             std::cout << "Window created" << std::endl;
         }
         renderer = SDL_CreateRenderer(window, -1, 0);
+        SDL_Surface* icon = IMG_Load("res/backGround.png");
+        SDL_SetWindowIcon(window, icon);
+
         if(renderer){
             SDL_SetRenderDrawColor(renderer, 255,255,255,255);
             std::cout << "Renderer created!" << std::endl;
@@ -86,6 +98,12 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         if (TTF_Init() == -1)
         {
             std::cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << std::endl;
+            isRunning = false;
+        }
+
+        if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+        {
+            std::cout <<"SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << std::endl;
             isRunning = false;
         }
 
@@ -113,6 +131,14 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         highScoreText = new MyText(renderer, "High Score: " + std::to_string(highScore),0 ,30 ,{ 255, 255, 255 } ,TTF_OpenFont("font/Roboto-Medium.ttf", 30));
 
         menuScreen = new MenuScreen(renderer);
+        pauseScreen = new PauseScreen(renderer, highScore);
+        deadScreen = new DeadScreen(renderer, highScore, score);
+
+
+        selectMus = Mix_LoadWAV( "mus/select.wav" );
+        pauseMus = Mix_LoadWAV( "mus/pause.wav" );
+        bgMus = Mix_LoadMUS( "mus/bgMus.mp3" );
+        Mix_PlayMusic( bgMus, -1 );
     }else{
         isRunning = false;
     }
@@ -126,20 +152,65 @@ void Game::handleEvents()
 
     if(Current == MyMenu){
         if(menuScreen->PlayBtn->handleEvent(event)){
+            Mix_PlayChannel( -1, selectMus, 0 );
             Current = MyGame;
         }
         if(menuScreen->ExitBtn->handleEvent(event)){
+            Mix_PlayChannel( -1, selectMus, 0 );
             isRunning = false;
         }
     }
-    if(Current == MyGame){
+    if(Current == MyGame || Current == MyDead){
         player->handleEvent(event);
         if(pauseBtn->handleEvent(event)){
+            Mix_PlayChannel( -1, pauseMus, 0 );
+            Current = MyPause;
             pause();
         }
+        if(player->isAlive == false && Current != MyDead){
+            Current = MyDead;
+            pipes->pause();
+            pauseScreen = new PauseScreen(renderer, highScore);
+            deadScreen = new DeadScreen(renderer, highScore, score);
+        }
     }
+
+    if(Current == MyPause){
+        if(pauseScreen->ContinueBtn->handleEvent(event)){
+            Mix_PlayChannel( -1, selectMus, 0 );
+            Current = MyGame;
+            notPause();
+        }
+        if(pauseScreen->BackBtn->handleEvent(event)){
+            Mix_PlayChannel( -1, selectMus, 0 );
+            Current = MyMenu;
+            reset();
+        }
+    }
+    if(Current == MyDead){
+        if(deadScreen->ResetBtn->handleEvent(event)){
+            Mix_PlayChannel( -1, selectMus, 0 );
+            Current = MyGame;
+            reset();
+        }
+        if(deadScreen->BackBtn->handleEvent(event)){
+            Mix_PlayChannel( -1, selectMus, 0 );
+            Current = MyMenu;
+            reset();
+        }
+    }
+
     if(musBtn->handleEvent2(event)){
-        reset();
+        Mix_PlayChannel( -1, selectMus, 0 );
+        if( Mix_PausedMusic() == 1 )
+        {
+            //Resume the music
+            Mix_ResumeMusic();
+        } else
+        {
+            //Pause the music
+            Mix_PauseMusic();
+        }
     }
 
     switch(event.type){
@@ -154,8 +225,8 @@ void Game::handleEvents()
 void Game::update()
 {
     backGround->Update();
-    if(Current == MyGame){
-        player->move(pipes->pipes, pipes->coins, score);
+    if(Current == MyGame || Current == MyDead ){
+        player->move(pipes->pipes, pipes->coins, pipes->apple, pipes->banana, score);
         pipes->Update();
 
 
@@ -186,19 +257,24 @@ void Game::render()
     SDL_RenderClear(renderer);
     //add stuff to render
     backGround->Render();
-    musBtn->Render();
-
-    if(Current == MyGame){
+    if(Current == MyGame || Current == MyPause || Current == MyDead){
         player->Render();
         pipes->Render();
         pauseBtn->Render();
         scoreText->Render();
         highScoreText->Render();
     }
+    if(Current == MyPause){
+        pauseScreen->Render();
+    }
+    if(Current == MyDead){
+        deadScreen->Render();
+    }
 
     if(Current == MyMenu){
         menuScreen->Render();
     }
+    musBtn->Render();
 
     SDL_RenderPresent(renderer);
 }
@@ -217,6 +293,15 @@ void Game::clean()
     }
 
     menuScreen->free();
+    pauseScreen->free();
+    deadScreen->free();
+    Mix_FreeChunk(selectMus);
+    Mix_FreeChunk(pauseMus);
+    Mix_FreeMusic( bgMus );
+    selectMus = NULL;
+    pauseMus= NULL;
+    bgMus= NULL;
+
     delete backGround; delete player; delete musBtn; delete pauseBtn; delete scoreText; delete highScoreText;
 
 

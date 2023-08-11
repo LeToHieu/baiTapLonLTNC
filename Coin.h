@@ -8,8 +8,8 @@ class Coin
         Coin(SDL_Renderer* ren,int x, int y);
         virtual ~Coin();
         int COIN_VEL = 3;
-        static const int COIN_HEIGHT = 70;
-        static const int COIN_WIDTH = 70;
+        static const int COIN_HEIGHT = 50;
+        static const int COIN_WIDTH = 50;
         void Update();
         void Render();
         void free();
@@ -17,11 +17,17 @@ class Coin
         SDL_Rect destRect;
         void pause();
         void notPause();
-        void reset();
+        void reset(int y);
 
     private:
+        int coinSpin = 0;
         int TEMP_X, TEMP_Y, TEMP_VEL;
-        SDL_Texture* coinTexture;
+        SDL_Texture* coinTexture1;
+        SDL_Texture* coinTexture2;
+        SDL_Texture* coinTexture3;
+        SDL_Texture* coinTexture4;
+        SDL_Texture* coinTexture5;
+        SDL_Texture* coinTexture6;
         SDL_Renderer* renderer;
 };
 

@@ -1,6 +1,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 #include "TextureManager.h"
+#include <SDL_mixer.h>
 
 enum ButtonState {
 	BUTTON_STATE_MOUSE_OUTSIDE = 0,

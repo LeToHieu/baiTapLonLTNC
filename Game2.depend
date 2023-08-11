@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1689777441 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\main.cpp
+1691696784 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_mixer.h>
 	"Game.h"
 
 1689598083 g:\project\c++_project\physics_2d_platfomer_sdl\game2\game.h
@@ -10,7 +11,7 @@
 	<SDL_image.h>
 	<iostream>
 
-1689788082 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\game.cpp
+1691695950 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\game.cpp
 	"Game.h"
 	"TextureManager.h"
 	"Bird.h"
@@ -20,10 +21,13 @@
 	"Button.h"
 	"MyText.h"
 	"MenuScreen.h"
+	"PauseScreen.h"
+	"DeadScreen.h"
 	<fstream>
 	<iostream>
 	<string>
 	<vector>
+	<SDL_mixer.h>
 
 1688946574 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\gameobject.cpp
 	"GameObject.h"
@@ -47,34 +51,36 @@
 	<SDL_image.h>
 	<iostream>
 
-1689602347 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.cpp
+1691684841 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.cpp
 	"Pipe.h"
 	"TextureManager.h"
 	<iostream>
 
-1689602059 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.h
+1691683536 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.h
 	<SDL.h>
 
-1689612771 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.cpp
+1691696409 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.cpp
 	"Bird.h"
 	"TextureManager.h"
 	<iostream>
 	<vector>
 
-1689612789 g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.h
+1691696240 g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.h
 	<SDL.h>
 	<vector>
 	"Pipes.h"
+	<SDL_mixer.h>
 
-1689602451 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.cpp
+1691696598 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.cpp
 	"Pipes.h"
 	"Pipe.h"
 	<time.h>
 	<iostream>
 
-1689602377 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.h
+1691673622 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.h
 	"Pipe.h"
 	"Coin.h"
+	"Fruit.h"
 	<vector>
 
 1689051780 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\mypipe.cpp
@@ -91,10 +97,11 @@
 1689185545 g:\project\c++_project\physics_2d_platfomer_sdl\game2\background.h
 	"TextureManager.h"
 
-1689742165 g:\project\c++_project\physics_2d_platfomer_sdl\game2\button.h
+1691692912 g:\project\c++_project\physics_2d_platfomer_sdl\game2\button.h
 	"TextureManager.h"
+	<SDL_mixer.h>
 
-1689606533 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\button.cpp
+1691693182 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\button.cpp
 	"Button.h"
 	<iostream>
 
@@ -107,10 +114,10 @@
 1689445726 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\ltimer.cpp
 	"LTimer.h"
 
-1689602163 g:\project\c++_project\physics_2d_platfomer_sdl\game2\coin.h
+1691683566 g:\project\c++_project\physics_2d_platfomer_sdl\game2\coin.h
 	"TextureManager.h"
 
-1689611019 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\coin.cpp
+1691684850 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\coin.cpp
 	"Coin.h"
 
 1689561376 g:\project\c++_project\physics_2d_platfomer_sdl\game2\mytext.h
@@ -122,7 +129,7 @@
 1689592843 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\mytext.cpp
 	"MyText.h"
 
-1689745677 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\menuscreen.cpp
+1690438609 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\menuscreen.cpp
 	"MenuScreen.h"
 
 1689741912 g:\project\c++_project\physics_2d_platfomer_sdl\game2\menuscreen.h
@@ -130,11 +137,26 @@
 	"MyText.h"
 	"Button.h"
 
-1689871440 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\deadscreen.cpp
+1690438708 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\deadscreen.cpp
 	"DeadScreen.h"
 
-1689871078 g:\project\c++_project\physics_2d_platfomer_sdl\game2\deadscreen.h
+1689991957 g:\project\c++_project\physics_2d_platfomer_sdl\game2\deadscreen.h
 	"TextureManager.h"
 	"MyText.h"
 	"Button.h"
+
+1690438671 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pausescreen.cpp
+	"PauseScreen.h"
+
+1689959369 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pausescreen.h
+	"TextureManager.h"
+	"MyText.h"
+	"Button.h"
+
+1691685213 g:\project\c++_project\physics_2d_platfomer_sdl\game2\fruit.h
+	"TextureManager.h"
+
+1691686496 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\fruit.cpp
+	"Fruit.h"
+	"iostream"
 

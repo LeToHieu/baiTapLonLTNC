@@ -1,6 +1,7 @@
 #include<iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include "Game.h"
 
 Game *game = nullptr;
@@ -21,7 +22,7 @@ int main(int argv, char** args){
     int frameTime;
 
     game = new Game();
-    game->init("PlippyFlap", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 600,false);
+    game->init("Flappy Bird", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 600,false);
 
     while(game->running()){
         frameStart = SDL_GetTicks();

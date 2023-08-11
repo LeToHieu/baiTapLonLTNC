@@ -18,7 +18,7 @@ public:
 
     void pause();
     void notPause();
-    void reset();
+    void reset(int y);
 
 private:
     int TEMP_X, TEMP_Y;
