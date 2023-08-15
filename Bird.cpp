@@ -90,6 +90,7 @@ void Bird::handleEvent(SDL_Event& e){
                 case SDLK_RIGHT: birdVelX += BIRD_VEL; break;
                 */
                 case SDLK_SPACE:
+                    Mix_PlayChannel( -1, wingMus, 0 );
                     isJumping = true;
                     birdVelY -= BIRD_VEL;
                     angle = -45;

@@ -59,7 +59,7 @@
 1692079021 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.h
 	<SDL.h>
 
-1692084323 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.cpp
+1692085324 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.cpp
 	"Bird.h"
 	"TextureManager.h"
 	<iostream>
@@ -71,7 +71,7 @@
 	"Pipes.h"
 	<SDL_mixer.h>
 
-1692082070 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.cpp
+1692085260 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.cpp
 	"Pipes.h"
 	"Pipe.h"
 	<time.h>
