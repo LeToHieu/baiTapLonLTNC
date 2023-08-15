@@ -22,7 +22,7 @@ Pipe::Pipe(const char*fileName, SDL_Renderer* ren,int x, int y, bool isFlip)
 
     renderer = ren;
 
-    pipeVelX = PIPE_VEL;
+    TEMP_VEL = PIPE_VEL;
     pipeFlip = isFlip;
 
     //
@@ -47,7 +47,7 @@ Pipe::~Pipe()
 
 void Pipe::Update(){
 
-    destRect.x -= pipeVelX;
+    destRect.x -= PIPE_VEL;
 
     destRect.y = destRect.y;
 }
@@ -61,14 +61,14 @@ void Pipe::Render(){
 }
 
 void Pipe::pause(){
-    pipeVelX = 0;
+    PIPE_VEL = 0;
 }
 void Pipe::notPause(){
-    pipeVelX = PIPE_VEL;
+    PIPE_VEL = TEMP_VEL;
 }
 void Pipe::reset(int y){
     destRect.x = TEMP_X;
     destRect.y = y;
 
-    pipeVelX = PIPE_VEL;
+    PIPE_VEL = TEMP_VEL;
 }

@@ -11,7 +11,7 @@
 	<SDL_image.h>
 	<iostream>
 
-1691695950 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\game.cpp
+1692082914 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\game.cpp
 	"Game.h"
 	"TextureManager.h"
 	"Bird.h"
@@ -51,33 +51,33 @@
 	<SDL_image.h>
 	<iostream>
 
-1691684841 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.cpp
+1692079033 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.cpp
 	"Pipe.h"
 	"TextureManager.h"
 	<iostream>
 
-1691683536 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.h
+1692079021 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.h
 	<SDL.h>
 
-1691696409 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.cpp
+1692084080 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.cpp
 	"Bird.h"
 	"TextureManager.h"
 	<iostream>
 	<vector>
 
-1691696240 g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.h
+1692083592 g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.h
 	<SDL.h>
 	<vector>
 	"Pipes.h"
 	<SDL_mixer.h>
 
-1691696598 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.cpp
+1692082070 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.cpp
 	"Pipes.h"
 	"Pipe.h"
 	<time.h>
 	<iostream>
 
-1691673622 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.h
+1692081771 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipes.h
 	"Pipe.h"
 	"Coin.h"
 	"Fruit.h"
@@ -114,7 +114,7 @@
 1689445726 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\ltimer.cpp
 	"LTimer.h"
 
-1691683566 g:\project\c++_project\physics_2d_platfomer_sdl\game2\coin.h
+1692078559 g:\project\c++_project\physics_2d_platfomer_sdl\game2\coin.h
 	"TextureManager.h"
 
 1691684850 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\coin.cpp

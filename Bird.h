@@ -18,7 +18,7 @@ class Bird
         void Update();
         void Render();
         void handleEvent(SDL_Event& e);
-		void move(std::vector<Pipe*> pipes,std::vector<Coin*> coins,Fruit* apple,Fruit* banana,int &score);
+		void move(std::vector<Pipe*> pipes,std::vector<Coin*> coins,Fruit* apple,Fruit* banana,Fruit* mushroom,int &score);
 		bool checkCollision( SDL_Rect a, SDL_Rect b );
 		void free();
 		void pause();
@@ -28,8 +28,10 @@ class Bird
 
     private:
         bool isPause;
+        bool isJumping = false;
         bool isInvisible = false;
         bool isSmall = false;
+        bool isBig = false;
         float angle;
         int BirdFlap = 0;
         int BirdCountVelo = 0;
@@ -39,7 +41,7 @@ class Bird
 
         int TEMP_X, TEMP_Y;
 
-        int powerTime = 0, powerTime2 = 0, MAX_POWERTIME = 3000;
+        int powerTime = 0, powerTime2 = 0,powerTime3 = 0, MAX_POWERTIME = 3000;
 
         SDL_Texture* birdTexture;
         SDL_Texture* birdTexture1;
@@ -55,6 +57,7 @@ class Bird
         Mix_Chunk* wingMus;
         Mix_Chunk* powerGhostMus;
         Mix_Chunk* powerSmallMus;
+        Mix_Chunk* powerBigMus;
 
         SDL_Rect srcRect, destRect;
         SDL_Renderer* renderer;

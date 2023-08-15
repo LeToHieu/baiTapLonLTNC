@@ -23,7 +23,7 @@ public:
 private:
     int TEMP_X, TEMP_Y;
     bool pipeFlip;
-    int pipeVelX;
+    int TEMP_VEL;
     SDL_Texture* pipeTexture;
     SDL_Rect srcRect;
     SDL_Renderer* renderer;

@@ -41,6 +41,7 @@ Bird::Bird(const char*fileName, SDL_Renderer* ren,int x, int y)
     wingMus = Mix_LoadWAV( "mus/sfx_wing.wav" );
     powerGhostMus= Mix_LoadWAV( "mus/sfx_powerGhost.wav" );
 	powerSmallMus= Mix_LoadWAV( "mus/sfx_powerSmall.wav" );
+	powerBigMus = Mix_LoadWAV("mus/sfx_powerBig.wav");
 
 
 }
@@ -76,7 +77,7 @@ void Bird::handleEvent(SDL_Event& e){
 
     //If a key was pressed
     if(isAlive){
-        if( e.type == SDL_KEYDOWN && e.key.repeat == 0 && !isPause)
+        if( e.type == SDL_KEYDOWN && e.key.repeat == 0 && !isPause  /*&& !isJumping*/)
         {
 
             //Adjust the velocity
@@ -89,24 +90,27 @@ void Bird::handleEvent(SDL_Event& e){
                 case SDLK_RIGHT: birdVelX += BIRD_VEL; break;
                 */
                 case SDLK_SPACE:
+                    isJumping = true;
                     birdVelY -= BIRD_VEL;
                     angle = -45;
                 break;
             }
         }
+
         //If a key was released
+        /*
         else if( e.type == SDL_KEYUP && e.key.repeat == 0 && !isPause)
         {
 
             //Adjust the velocity
             switch( e.key.keysym.sym )
             {
-                /*
+
                 case SDLK_UP: birdVelY += BIRD_VEL; break;
                 case SDLK_DOWN: birdVelY -= BIRD_VEL; break;
                 case SDLK_LEFT: birdVelX += BIRD_VEL; break;
                 case SDLK_RIGHT: birdVelX -= BIRD_VEL; break;
-                */
+
                 case SDLK_SPACE:
                     birdVelY += BIRD_VEL;
                     BirdCountVelo = 0;
@@ -114,11 +118,12 @@ void Bird::handleEvent(SDL_Event& e){
             }
 
         }
+        */
     }
 
 }
 
-void Bird::move(std::vector<Pipe*> pipes, std::vector<Coin*> coins,Fruit* apple,Fruit* banana, int &score){
+void Bird::move(std::vector<Pipe*> pipes, std::vector<Coin*> coins,Fruit* apple,Fruit* banana,Fruit* mushroom, int &score){
 
 
     if(checkCollision( destRect, apple->destRect) && apple->isClaim ==false){
@@ -147,10 +152,29 @@ void Bird::move(std::vector<Pipe*> pipes, std::vector<Coin*> coins,Fruit* apple,
     if(isSmall){
         destRect.w = 30;
         destRect.h = 20;
+    }
+
+    if(checkCollision( destRect, mushroom->destRect) && mushroom->isClaim ==false){
+        Mix_PlayChannel( -1, powerBigMus, 0 );
+        mushroom->isClaim = true;
+        powerTime3 = SDL_GetTicks()+MAX_POWERTIME;
+    }
+
+    if(powerTime3>SDL_GetTicks()){
+        isBig = true;
     }else{
+        isBig = false;
+    }
+    if(isBig){
+        destRect.w = 65;
+        destRect.h = 55;
+    }
+
+    if(!isBig && !isSmall){
         destRect.w = BIRD_WIDTH;
         destRect.h = BIRD_HEIGHT;
     }
+
 
     SDL_Rect& coin1 = coins[0]->destRect;
     SDL_Rect& coin2 = coins[1]->destRect;
@@ -220,15 +244,19 @@ void Bird::move(std::vector<Pipe*> pipes, std::vector<Coin*> coins,Fruit* apple,
             //birdVelY+=Gravity;
             if(BirdCountVelo>=-150){
                 birdPosY += birdVelY/*+Gravity*/;
-                //std::cout << BirdCountVelo;
-            }
-
-            else{
+            }else{
                 birdPosY += Gravity;
             }
+            if(BirdCountVelo <= -150){
+                BirdCountVelo = 0;
+                birdVelY += BIRD_VEL;
+                //isJumping = false;
+            }
+
             if(BirdCountVelo==0){
                 birdPosY += Gravity;
             }
+
 
         }else{
             birdVelY = 0;
@@ -340,12 +368,14 @@ void Bird::free(){
 	Mix_FreeChunk(wingMus);
 	Mix_FreeChunk(powerGhostMus);
 	Mix_FreeChunk(powerSmallMus);
+	Mix_FreeChunk(powerBigMus);
 	pointMus = NULL;
 	hitMus= NULL;
 	dieMus= NULL;
 	wingMus= NULL;
 	powerGhostMus= NULL;
 	powerSmallMus= NULL;
+	powerBigMus = NULL;
 }
 
 void Bird::pause(){
@@ -361,6 +391,7 @@ void Bird::reset(){
     }
     BirdCountVelo = 0;
     isAlive = true;
+    isJumping = false;
     destRect.x = TEMP_X;
     destRect.y = TEMP_Y;
     birdPosX = TEMP_X;

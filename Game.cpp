@@ -224,10 +224,19 @@ void Game::handleEvents()
 
 void Game::update()
 {
+    static bool flagPlusVel = true;
     backGround->Update();
     if(Current == MyGame || Current == MyDead ){
-        player->move(pipes->pipes, pipes->coins, pipes->apple, pipes->banana, score);
+        player->move(pipes->pipes, pipes->coins, pipes->apple, pipes->banana, pipes->mushroom, score);
         pipes->Update();
+
+        if( score % 10 == 0 && score != 0 && flagPlusVel){
+            pipes->PlusVelo();
+            flagPlusVel = false;
+        }else if(score % 10 !=0 ){
+            flagPlusVel = true;
+        }
+
 
 
         if(score>=highScore && tempScore != score){

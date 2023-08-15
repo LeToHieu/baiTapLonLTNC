@@ -30,7 +30,8 @@ Pipes::Pipes(SDL_Renderer* ren)
     pipes.push_back(new Pipe("res/pipe.png", renderer, SCREEN_WIDTH+2*WIDTH_BET_PIPES, (SCREEN_HEIGHT/2)+SPACE_BET_PIPES/2 +  randPosition));
     pipes.push_back(new Pipe("res/pipe.png", renderer, SCREEN_WIDTH+2*WIDTH_BET_PIPES, -(SCREEN_HEIGHT/2)-SPACE_BET_PIPES/2 + randPosition, true));
     coins.push_back(new Coin(renderer, SCREEN_WIDTH+ WIDTH_BET_PIPES*2 +(Pipe::PIPE_WIDTH/2)-(Coin::COIN_WIDTH)/2, (SCREEN_HEIGHT/2) +  randPosition -(Coin::COIN_HEIGHT)/2));
-
+    randPosition = (rand() % (ub - lb + 1)) + lb;
+    mushroom = new Fruit(renderer, "res/Mushroom.png", SCREEN_WIDTH + WIDTH_BET_PIPES + WIDTH_BET_PIPES + WIDTH_BET_PIPES/2 +(Fruit::FRUIT_WIDTH)/2,(SCREEN_HEIGHT/2)+randPosition-(Fruit::FRUIT_HEIGHT)/2);
     /*
     pipe1 = new Pipe("res/pipe.png", renderer, SCREEN_WIDTH, (SCREEN_HEIGHT/2)+SPACE_BET_PIPES/2 +  randPosition);
     pipe2 = new Pipe("res/pipe.png", renderer, SCREEN_WIDTH, -(SCREEN_HEIGHT/2)-SPACE_BET_PIPES/2 + randPosition, true);
@@ -87,8 +88,18 @@ void Pipes::Update(){
         }
     }
 
+    if(mushroom->destRect.x < -100+(Pipe::PIPE_WIDTH/2)-(Fruit::FRUIT_WIDTH)/2){
+        mushroom->destRect.x = SCREEN_WIDTH+(Pipe::PIPE_WIDTH/2)-(Fruit::FRUIT_WIDTH)/2;
+        mushroom->destRect.y = (SCREEN_HEIGHT/2) +  randPosition -(Fruit::FRUIT_HEIGHT)/2;
+        randPosition = (rand() % (5 - 1 + 1)) + 1;
+        if(randPosition == 5){
+            mushroom->isClaim = false;
+        }
+    }
+
     apple->Update();
     banana->Update();
+    mushroom->Update();
 }
 
 void Pipes::Render(){
@@ -98,6 +109,7 @@ void Pipes::Render(){
     */
     apple->Render();
     banana->Render();
+    mushroom->Render();
 
     for(Pipe* childPipe: pipes){
         childPipe->Render();
@@ -137,7 +149,12 @@ void Pipes::free(){
     }
     apple->free();
     banana->free();
+    mushroom->free();
+
     delete apple;
+    delete banana;
+    delete mushroom;
+
     pipes.clear();
     coins.clear();
 }
@@ -145,6 +162,7 @@ void Pipes::free(){
 void Pipes::pause(){
     apple->pause();
     banana->pause();
+    mushroom->pause();
     for(Pipe* childPipe: pipes){
         childPipe->pause();
     }
@@ -156,6 +174,7 @@ void Pipes::pause(){
 void Pipes::notPause(){
     apple->notPause();
     banana->notPause();
+    mushroom->notPause();
     for(Pipe* childPipe: pipes){
         childPipe->notPause();
     }
@@ -171,6 +190,9 @@ void Pipes::reset(){
 
     randPosition = (rand() % (ub - lb + 1)) + lb;
     banana->reset((SCREEN_HEIGHT/2)+randPosition-(Fruit::FRUIT_HEIGHT)/2);
+
+    randPosition = (rand() % (ub - lb + 1)) + lb;
+    mushroom->reset((SCREEN_HEIGHT/2)+randPosition-(Fruit::FRUIT_HEIGHT)/2);
 
     randPosition = (rand() % (ub - lb + 1)) + lb;
 
@@ -194,5 +216,18 @@ void Pipes::reset(){
         childCoin->reset();
     }
     */
+}
+
+void Pipes::PlusVelo(){
+    for(Pipe* childPipe: pipes){
+        childPipe->PIPE_VEL+=1;
+    }
+
+    for(Coin* childCoin: coins){
+        childCoin->COIN_VEL+=1;
+    }
+    apple->FRUIT_VEL+=1;
+    banana->FRUIT_VEL+=1;
+    mushroom->FRUIT_VEL+=1;
 }
 

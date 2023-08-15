@@ -11,6 +11,7 @@ class Pipes
         virtual ~Pipes();
         void Render();
         void Update();
+        void PlusVelo();
         //SDL_Rect getDestRect1();
         //SDL_Rect getDestRect2();
         static const int SPACE_BET_PIPES = 230;
@@ -19,6 +20,7 @@ class Pipes
         std::vector<Coin*> coins;
         Fruit* apple;
         Fruit* banana;
+        Fruit* mushroom;
 
         static const int SCREEN_HEIGHT = 600;
         static const int SCREEN_WIDTH = 1200;
