@@ -149,7 +149,7 @@ void Bird::move(std::vector<Pipe*> pipes, std::vector<Coin*> coins,Fruit* apple,
     }else{
         isSmall = false;
     }
-    if(isSmall){
+    if(isSmall && powerTime2 > powerTime3){
         destRect.w = 30;
         destRect.h = 20;
     }
@@ -165,7 +165,7 @@ void Bird::move(std::vector<Pipe*> pipes, std::vector<Coin*> coins,Fruit* apple,
     }else{
         isBig = false;
     }
-    if(isBig){
+    if(isBig && powerTime3 > powerTime2){
         destRect.w = 65;
         destRect.h = 55;
     }

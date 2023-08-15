@@ -59,7 +59,7 @@
 1692079021 g:\project\c++_project\physics_2d_platfomer_sdl\game2\pipe.h
 	<SDL.h>
 
-1692084080 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.cpp
+1692084323 source:g:\project\c++_project\physics_2d_platfomer_sdl\game2\bird.cpp
 	"Bird.h"
 	"TextureManager.h"
 	<iostream>
